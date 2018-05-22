@@ -1,5 +1,8 @@
+// libs
 import * as React from 'react';
-import './App.css';;
+import './App.css';
+// styles
+import './styles/index.scss';
 
 class App extends React.Component {
   public render() {
@@ -11,6 +14,14 @@ class App extends React.Component {
         <p className="App-intro">
           To get started, edit <code>src/App.tsx</code> and save to reload.
         </p>
+          <div className="container">
+              <div className="row">
+                  <div className="col-md-3">1</div>
+                  <div className="col-md-3">2</div>
+                  <div className="col-md-3">3</div>
+                  <div className="col-md-3">4</div>
+              </div>
+          </div>
       </div>
     );
   }

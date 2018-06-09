@@ -1,27 +1,55 @@
 // libs
 import * as React from 'react';
-import './App.css';
+import { Switch, Route } from 'react-router-dom';
 // styles
 import './styles/index.scss';
+// pages
+import Home from './Pages/Home'
 
-class App extends React.Component {
+
+const Dashboard = () => (
+  <div>
+    Dashboard
+  </div>
+);
+
+const Routing = () => (
+  <Switch>
+    <Route exact={true} path='/' component={Home}/>
+    <Route path='/dashboard' component={Dashboard}/>
+  </Switch>
+);
+
+interface IState {
+  showSidebar: boolean;
+}
+
+class App extends React.Component<any, IState> {
+  constructor (props: any) {
+    super(props);
+
+    this.state = {
+      showSidebar: false
+    };
+    // this.showNav = false;
+    console.log('App this', this);
+  }
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-3">1</div>
-            <div className="col-md-3">2</div>
-            <div className="col-md-3">3</div>
-            <div className="col-md-3">4</div>
+      <div className='app-layout'>
+        <aside className={`app-layout__sidebar ${this.state.showSidebar ? 'show-navbar' : ''}`}>
+          aside
+        </aside>
+        <main className='app-layout__page'>
+          <header className='app-layout__header'>header</header>
+          <div className='app-layout__content'>
+
+            {/*here should be routing*/}
+            <Routing/>
+
           </div>
-        </div>
+          <footer className='app-layout__footer'>footer</footer>
+        </main>
       </div>
     );
   }

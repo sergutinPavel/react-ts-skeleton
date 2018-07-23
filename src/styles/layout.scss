@@ -16,22 +16,33 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   .app-layout__sidebar, .app-layout__page {
-    width: 100%;
+    flex: 1;
     min-height: 100vh;
   }
   .app-layout__sidebar {
-    position: absolute;
-    left: -100vw;
-    transition: transform .3s cubic-bezier(0.6, 0.04, 0.3, 1), background-color .5s linear .3s;
-    width: 100%;
-    flex-shrink: 0;
-    background-color: rgba(153, 153, 153, 0);
+    position: relative;
+    background-color: #ddd;
+    max-width: 20rem;
+    overflow-y: auto;
   }
-  .app-layout__sidebar.app-layout__show-sidebar {
-    transform: translateX(100vw);
-    background-color: rgba(153, 153, 153, 0.6);
-    //transition: background-color 2s linear, transform 2s cubic-bezier(0.6, 0.04, 0.3, 1) 2s;
+  .app-layout__sidebar.minimized {
+    max-width: 6rem;
   }
+  //.app-layout__sidebar {
+  //  position: absolute;
+  //  left: -100vw;
+  //  transition: transform .3s cubic-bezier(0.6, 0.04, 0.3, 1), background-color .5s linear .3s;
+  //  width: 100%;
+  //  flex-shrink: 0;
+  //  background-color: rgba(153, 153, 153, 0);
+  //}
+  //.app-layout__sidebar.app-layout__show-sidebar {
+  //  transform: translateX(100vw);
+  //  background-color: rgba(153, 153, 153, 0.6);
+  //  //transition: background-color 2s linear, transform 2s cubic-bezier(0.6, 0.04, 0.3, 1) 2s;
+  //}
+  //.app-layout__sidebar.app-layout__hide-sidebar {
+  //}
   .app-layout__page {
     display: flex;
     flex-direction: column;

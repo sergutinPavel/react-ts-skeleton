@@ -1,10 +1,14 @@
 // libs
 import * as React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+// import { connect } from "react-redux";
+// import { IncreaseCounterAction } from "./store/general/general.actions";
+// import { getGeneralState } from "./store/selectors";
 // styles
 import './styles/index.scss';
 // pages
 import Home from './Pages/Home'
+
 
 
 const Dashboard = () => (
@@ -37,11 +41,18 @@ class App extends React.Component<any, IState> {
   }
 
   public toggleSidebar = () => {
+    // dispatch(IncreaseCounterAction(5));
     console.warn('toggleSidebar', this)
     this.setState({
       showSidebar: !this.state.showSidebar
     });
   };
+
+  // public mapStateToProps = (state: IGlobalState, ownProps: AppProps): StateProps => {
+  //   return {
+  //     general: getGeneralState(state)
+  //   }
+  // };
 
   public render () {
     return (

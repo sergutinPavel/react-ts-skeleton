@@ -1,14 +1,14 @@
 // libs
 import * as React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-// import { connect } from "react-redux";
-// import { IncreaseCounterAction } from "./store/general/general.actions";
-// import { getGeneralState } from "./store/selectors";
+import { connect } from "react-redux";
+// import { selectExpandSidebar } from "./store/selectors";
+import { ToggleSidebarAction } from "./store/general/general.actions";
+
 // styles
 import './styles/index.scss';
 // pages
-import Home from './Pages/Home'
-
+import Home from './Pages/Home';
 
 
 const Dashboard = () => (
@@ -40,12 +40,16 @@ class App extends React.Component<any, IState> {
     console.log('App this', this);
   }
 
+  componentWillUpdate () {
+    console.warn('this componentWillUpdate', this)
+  };
+
+  public redirect = () => {
+    this.props.history.push('/main')
+  };
+
   public toggleSidebar = () => {
-    // dispatch(IncreaseCounterAction(5));
-    console.warn('toggleSidebar', this)
-    this.setState({
-      showSidebar: !this.state.showSidebar
-    });
+    this.props.toggleSidebarAction();
   };
 
   // public mapStateToProps = (state: IGlobalState, ownProps: AppProps): StateProps => {
@@ -63,7 +67,7 @@ class App extends React.Component<any, IState> {
             {/*close*/}
           {/*</div>*/}
         {/*</aside>*/}
-        <aside className={'app-layout__sidebar minimized'}>
+        <aside className={`app-layout__sidebar ${this.props.expandSidebar ? '': 'minimized'}`}>
           aside
         </aside>
         <main className='app-layout__page'>
@@ -86,4 +90,16 @@ class App extends React.Component<any, IState> {
   }
 }
 
-export default App;
+function mapStateToProps (state: any) {
+  return {
+    expandSidebar: state.general.expandSidebar
+  }
+}
+function mapDispatchToProps (dispatch: any) {
+  return {
+    toggleSidebarAction: (payload?: boolean) => dispatch({ ...new ToggleSidebarAction(payload) })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default App;

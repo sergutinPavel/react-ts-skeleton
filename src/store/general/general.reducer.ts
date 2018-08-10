@@ -1,27 +1,25 @@
 import * as GeneralActions from './general.actions';
 
 export interface IGeneralState {
-  counter: number;
+  expandSidebar: boolean;
   loading: boolean;
   error?: any;
 }
 
 export const initialState: IGeneralState = {
-  counter: 0,
+  expandSidebar: false,
   loading: false,
   error: null
 };
 
-export default function reducer(state: IGeneralState = initialState, action: GeneralActions.IActions): IGeneralState {
+export function reducer(state: IGeneralState = initialState, action: GeneralActions.GeneralActions): IGeneralState {
   switch (action.type) {
-    case GeneralActions.INCREASE_COUNTER:
-      return {
-        ...state,
-        counter: state.counter + action.payload
-      };
-    case GeneralActions.RESET_COUNTER:
-      return { ...state, counter: 0 };
+    case GeneralActions.ActionTypes.TOGGLE_SIDEBAR:
+      return { ...state, expandSidebar: !state.expandSidebar };
     default:
       return state;
   }
 }
+
+// selectors
+export const getExpandSidebar = (state: IGeneralState) => state.expandSidebar;

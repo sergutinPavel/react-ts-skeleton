@@ -1,17 +1,13 @@
-// import { routerReducer, RouterState } from 'react-router-redux';
+// import logger from 'redux-logger/dist/redux-logger.js';
 import { combineReducers } from 'redux';
-// import recycleState from 'redux-recycle';
 
-// import appReducer, { initialState as appInitialState, AppState } from './app/reducer';
-// import booksReducer, { initialState as booksInitialsState, BooksState } from './books/reducer';
-// import authReducer, { AuthState } from './auth/reducer';
-import generalReducer, { IGeneralState } from './general/general.reducer';
+import * as generalState from './general/general.reducer';
 
 
 export interface IGlobalState {
-  // auth: any;
-  general: IGeneralState;
   // router: RouterState;
+  // auth: any;
+  general: generalState.IGeneralState;
 }
 
 // export default combineReducers<GlobalState>({
@@ -21,8 +17,8 @@ export interface IGlobalState {
 //   router: routerReducer,
 // });
 
-export default combineReducers<IGlobalState>({
-  // auth: authReducer,
-  general: generalReducer,
+export const reducer = combineReducers<IGlobalState>({
   // router: routerReducer
+  // auth: authReducer,
+  general: generalState.reducer,
 });

@@ -1,8 +1,9 @@
-import { IGlobalState } from './root.reducer';
-import { IGeneralState } from "./general/general.reducer";
+import { IGlobalState } from "./root.reducer";
+import { createSelector } from "reselect";
 
-// export const getError = (state: GlobalState): string | undefined => state.auth.error;
-// export const getIdToken = (state: GlobalState): string | undefined => state.auth.idToken;
-// export const getIsLoggingIn = (state: GlobalState): boolean => state.auth.isLoggingIn;
 
-export const getGeneralState = (state: IGlobalState): IGeneralState | undefined => state.general;
+// get state
+const getGeneralState = ((state: IGlobalState) => state.general);
+
+// selectors
+export const selectExpandSidebar = createSelector([getGeneralState], v => v.expandSidebar);

@@ -48,15 +48,13 @@ class App extends React.Component<any, IState> {
     this.props.history.push('/main')
   };
 
-  public toggleSidebar = () => {
+  public exampleDispatch = () => {
     this.props.toggleSidebarAction();
   };
 
-  // public mapStateToProps = (state: IGlobalState, ownProps: AppProps): StateProps => {
-  //   return {
-  //     general: getGeneralState(state)
-  //   }
-  // };
+  public toggleSidebar = () => {
+    this.props.toggleSidebarAction();
+  };
 
   public render () {
     return (

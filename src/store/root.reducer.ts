@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 import * as generalState from './general/general.reducer';
 
 
-export interface IGlobalState {
+export interface IRootState {
   // router: RouterState;
   // auth: any;
   general: generalState.IGeneralState;
@@ -17,7 +17,7 @@ export interface IGlobalState {
 //   router: routerReducer,
 // });
 
-export const reducer = combineReducers<IGlobalState>({
+export const reducer = combineReducers<IRootState>({
   // router: routerReducer
   // auth: authReducer,
   general: generalState.reducer,

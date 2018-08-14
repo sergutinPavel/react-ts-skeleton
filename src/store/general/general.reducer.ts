@@ -1,5 +1,6 @@
 import * as GeneralActions from './general.actions';
 
+
 export interface IGeneralState {
   expandSidebar: boolean;
   loading: boolean;
@@ -16,6 +17,8 @@ export function reducer(state: IGeneralState = initialState, action: GeneralActi
   switch (action.type) {
     case GeneralActions.ActionTypes.TOGGLE_SIDEBAR:
       return { ...state, expandSidebar: !state.expandSidebar };
+    case GeneralActions.ActionTypes.EXAMPLE_ACTION:
+      return state;
     default:
       return state;
   }

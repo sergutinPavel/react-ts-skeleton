@@ -1,15 +1,27 @@
 // import logger from 'redux-logger';
 import { createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { createEpicMiddleware } from 'redux-observable';
 import { reducer } from "./root.reducer";
+import { rootEffects } from "./root.effects";
 
 
-if (process.env.NODE_ENV !== 'production') {
-  // console.log('process', process, process.env);
-}
+const epicMiddleware = createEpicMiddleware();
+const configureStore = (history: History) => {
+  const store = createStore(
+    reducer,
+    composeWithDevTools(
+      applyMiddleware(
+        epicMiddleware
+      )
+    )
+  );
+  epicMiddleware.run((rootEffects as any));
 
-// const enhancer = ((window as any).devToolsExtension && process.env.NODE_ENV !== 'production')
-//   ? (window as any).devToolsExtension()(createStore) : createStore;
+  return store;
+};
 
-const store = createStore(reducer, applyMiddleware());
+// const store = createStore(reducer, applyMiddleware());
+const Store = configureStore(history);
 
-export default store;
+export default Store;
